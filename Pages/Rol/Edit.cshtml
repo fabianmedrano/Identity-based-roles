@@ -1,0 +1,14 @@
+﻿@page
+@model Identity.Pages.Rol.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="post"> 
+    <input type="hidden" asp-for="Role.Id" />
+    <div>
+        <label asp-for="Role.Name"></label>
+        <input asp-for="Role.Name" />
+    </div>
+    <button type="submit">Save</button>
+</form>

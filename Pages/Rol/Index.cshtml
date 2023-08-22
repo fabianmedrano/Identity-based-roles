@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rol in Model.Roles)
+        {
+            <tr>
+                <td>@rol.Name</td>
+                <td>
+                    <a asp-area="" asp-page="Edit" asp-route-id="@rol.Id" >Edit</a>|
+                    <a asp-area="" asp-page="Delete" asp-route-id="@rol.Id">Delete</a>|
+                    <a asp-area="" asp-page="Details" asp-route-id="@rol.Id">Details</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
