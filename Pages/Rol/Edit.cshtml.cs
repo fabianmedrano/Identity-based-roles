@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Pages.Rol
 {
@@ -29,11 +30,15 @@ namespace Identity.Pages.Rol
         public async Task<IActionResult> OnPostAsync() {
             if (!ModelState.IsValid) return Page();
 
-            var roleToUpdate = new IdentityRole
+            var roleToUpdate = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == Role.Id);
+
+            if (roleToUpdate == null)
             {
-                Id = Role.Id,
-                Name = Role.Name
-            };
+                return NotFound();
+            }
+
+            roleToUpdate.Name = Role.Name;
+
             var result = await _roleManager.UpdateAsync(roleToUpdate);
 
             if (!result.Succeeded) return Page();

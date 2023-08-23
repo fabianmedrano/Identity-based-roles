@@ -1,4 +1,15 @@
 ﻿@page
 @model Identity.Pages.Rol.DeleteModel
-@{
-}
+@ViewData["Title"] = "Delete";
+
+
+
+<div class="row">
+    <dt> @Html.DisplayFor(model=> model.Role.Name)</dt>
+
+
+    <form asp-action="post">
+        <input type="hidden" asp-for="Role.Id"/>
+        <button type="submit">Delete </button>
+    </form>
+</div>
